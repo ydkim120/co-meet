@@ -1,0 +1,62 @@
+@forward 'variables';
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+html,
+body {
+  margin: 0;
+  // display: flex;
+  place-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: 'Noto Sans Korean', 'Apple SD Gothic Neo', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #FEF8E9;
+  color: #020202;
+  * { box-sizing: border-box; }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  /* 세로축 스크롤바 길이 */
+  height: 5px;
+  /* 가로축 스크롤바 길이 */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-button {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-button:start { border-radius: 5px 5px 0 0; }
+
+::-webkit-scrollbar-button:end { border-radius: 0 0 5px 5px; }
