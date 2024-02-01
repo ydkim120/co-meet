@@ -95,7 +95,7 @@ const dateSimple = (date: string) => {
   &__time {
     display: flex;
     align-items: flex-end;
-    width: 50px;
+    min-width: 50px;
   }
 }
 </style>

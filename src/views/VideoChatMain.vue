@@ -1,19 +1,15 @@
 <template>
   <div
     class="video-chat__wrap"
+    ref="videosWrap"
     @mouseup="endDragging()">
-    <ul
-      class="video-chat__list"
+    <UserVideoList
+      class="user-videos"
       :style="{
         width: `${dividerPosition}%`
-      }">
-      <li
-        class="video-chat__item"
-        v-for="i in 8"
-        :key="i">
-        <VideoChatPanel />
-      </li>
-    </ul>
+      }"
+      :user-list="userList"
+      ref="videos" />
     <span
       class="section-divider"
       :style="{
@@ -30,12 +26,40 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from 'vue'
-import VideoChatPanel from '@/components/VideoChatPanel.vue'
+import { type Component, onMounted, onBeforeUnmount, ref } from 'vue'
+
+import UserVideoList from '@/components/UserVideoList.vue'
 import UserChatDrawer from '@/components/UserChatDrawer.vue'
 
-const drawer = ref(null)
+const drawer = ref<Component | null>(null)
+const videos = ref<InstanceType<typeof UserVideoList> | null>(null)
+const videosWrap = ref<HTMLCanvasElement | null>(null)
 const dividerPosition = ref<string | number>(50)
+const userList = ref([{
+  userName: '백미',
+  src: 'https://dosant.github.io/video.mp4'
+}, {
+  userName: '밥풀',
+  src: '../assets/images/avatar_1.png'
+}, {
+  userName: '까미',
+  src: ''
+}, {
+  userName: '서리태',
+  src: ''
+}, {
+  userName: '흑미',
+  src: 'https://dosant.github.io/video.mp4'
+}, {
+  userName: '',
+  src: ''
+}, {
+  userName: '보리',
+  src: ''
+}, {
+  userName: '콩이',
+  src: ''
+}])
 
 onMounted(() => {
   // window.addEventListener('resize', onResize)
@@ -46,6 +70,12 @@ const handleDragging = (e: MouseEvent) => {
 
   if (percentage >= 10 && percentage <= 90) {
     dividerPosition.value = percentage.toFixed(2)
+  }
+  if (videos.value && videosWrap?.value) {
+    const videoAreaWidth = videosWrap.value.getBoundingClientRect().width * (e.pageX / window.innerWidth)
+
+    // debounce(function () { videos.value?.recalculateLayout(videoAreaWidth) }, 50)
+    videos.value?.recalculateLayout(videoAreaWidth)
   }
 }
 const startDragging = () => {
@@ -72,7 +102,7 @@ onBeforeUnmount(() => {
   // top: 0;
   // bottom: 0;
   // right: 0;
-  background-color: $background-color;
+  padding-top: $header-height;
 }
 
 .section-divider {
@@ -87,19 +117,9 @@ onBeforeUnmount(() => {
   cursor: ew-resize;
 }
 
-.video-chat__list {
-  overflow-y: auto;
+.user-videos {
+  padding: $header-height $gap 0;
   max-height: 100vh;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-rows: minmax(100px, auto);
-  .video-chat__item { max-width: 500px; }
-}
-@media (min-width: 900px) {
-  .video-chat__list { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (min-width: 600px) {
-  .video-chat__list { grid-template-columns: repeat(2, 1fr); }
-}
 </style>

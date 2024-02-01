@@ -18,10 +18,12 @@
         :rows="1"
         resize="none"
         type="textarea"
-        placeholder="메세지를 입력하세요." />
+        placeholder="메세지를 입력하세요."
+        @keypress.enter="enterNewMsg()" />
       <el-button
         type="primary"
-        :icon="Position" />
+        :icon="Position"
+        @click="enterNewMsg()" />
     </div>
   </aside>
 </template>
@@ -38,19 +40,36 @@ const chatList = ref([{
   contents: '고양이는 야옹',
   createdAt: new Date()
 }])
+
+const enterNewMsg = (msg = newMsg.value) => {
+  if (!msg?.trim()) return
+  chatList.value.push({
+    userName: '내 이름',
+    contents: msg,
+    createdAt: new Date ()
+  })
+  newMsg.value = ''
+}
 </script>
 
 <style lang="scss" scoped>
 .user-chat-drawer {
-  overflow-y: auto;
   position: relative;
   // width: 100%;
-  max-height: 100vh;
-
+  
   .user-chat {
     &__list {
-      padding: $gap;
+      overflow-y: auto;
+      min-height: calc(100vh - 80px);
+      max-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+      padding: $gap $gap 80px;
   
+    }
+    &__item {
+
     }
   }
   .new-chat__wrap {
@@ -60,6 +79,7 @@ const chatList = ref([{
     right: 0;
     bottom: 0;
     padding: $gap;
+    background-color: $background-color;
     .new-chat__input { width: 100%; }
   }
 }

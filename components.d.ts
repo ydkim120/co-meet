@@ -20,6 +20,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UserChatDrawer: typeof import('./src/components/UserChatDrawer.vue')['default']
+    UserVideoList: typeof import('./src/components/UserVideoList.vue')['default']
     VideoChatPanel: typeof import('./src/components/VideoChatPanel.vue')['default']
   }
 }
