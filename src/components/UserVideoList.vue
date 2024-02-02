@@ -88,21 +88,21 @@ const recalculateLayout = (screenWidth: number) => {
     const gallery = videoListRef.value
     if (!gallery) return
     const aspectRatio = 16 / 9
-    // const screenWidth = gallery.getBoundingClientRect().width
-    console.log('@ screen-width >>', screenWidth)
-    // const screenHeight = document.body.getBoundingClientRect().height
     const screenHeight = gallery.getBoundingClientRect().height
+    
+    const screenWidthExceptPadding = screenWidth - 40
+    const screenHeightExceptPadding = screenHeight - 80 
+
     const videoCount = props.userList.length
   
     const { width, height, cols } = calculateLayout(
-      screenWidth,
-      screenHeight,
+      screenWidthExceptPadding,
+      screenHeightExceptPadding,
       videoCount,
       aspectRatio
     )
 
-
-    // if (videoListRef.value) videoListRef.value.style.maxWidth = (width * cols) + 'px'
+    // if (videoListRef.value) videoListRef.value.style.maxWidth = (width * cols + 60) + 'px'
     videoItemWidth.value = width
     videoItemHeight.value = height
   
@@ -117,17 +117,12 @@ defineExpose({
 
 <style scoped lang="scss">
 .user-video__list {
-  /* display: grid;
-  grid-gap: 20px;
-  grid-template-rows: minmax(100px, auto);
-  grid-template-columns: repeat(3, 1fr);
-  .user-video__item { max-width: 300px; } */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: $gap;
+  gap: auto $gap;
   width: 100%;
-  max-width: calc(var(--width) * var(--cols));
+  // max-width: calc(var(--width) * var(--cols));
 }
 .user-video__item {
   // min-height: 300px;

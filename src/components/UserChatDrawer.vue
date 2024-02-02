@@ -1,6 +1,8 @@
 <template>
   <aside class="user-chat-drawer">
-    <ul class="user-chat__list">
+    <ul
+      class="user-chat__list"
+      ref="chatListRef">
       <li
         class="user-chat__item"
         v-for="(chat, idx) in chatList"
@@ -29,19 +31,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import ChatBubble from '@/components/ChatBubble.vue'
 import { Position } from '@element-plus/icons-vue'
 
 const newMsg = ref('')
-
+const chatListRef = ref<HTMLCanvasElement | null>(null)
 const chatList = ref([{
   userName: '백미',
   contents: '고양이는 야옹',
   createdAt: new Date()
 }])
 
-const enterNewMsg = (msg = newMsg.value) => {
+const enterNewMsg = async (msg = newMsg.value) => {
   if (!msg?.trim()) return
   chatList.value.push({
     userName: '내 이름',
@@ -49,6 +51,14 @@ const enterNewMsg = (msg = newMsg.value) => {
     createdAt: new Date ()
   })
   newMsg.value = ''
+  await nextTick()
+  scrollToBottom(chatListRef.value)
+}
+
+const scrollToBottom = (element: HTMLElement | null) => {
+  element?.scrollTo({
+    top: chatListRef?.value?.offsetHeight
+  })
 }
 </script>
 

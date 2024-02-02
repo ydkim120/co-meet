@@ -42,7 +42,8 @@ const props = withDefaults(defineProps<Props>(), {
   height: 100%;
   // max-width: 500px;
   background-color: $gray-purple;
-  box-shadow: 0 4px 20px 0 rgba(224, 224, 224, 0.7);
+  border: 3px solid $background-color;
+  // box-shadow: 0 4px 20px 0 rgba(224, 224, 224, 0.7);
   border-radius: $radius;
   &__video {
     width: 100%;

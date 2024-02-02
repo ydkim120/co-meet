@@ -59,24 +59,23 @@ const userList = ref([{
 }, {
   userName: '콩이',
   src: ''
+}, {
+  userName: '찹쌀이',
+  src: ''
 }])
 
 onMounted(() => {
+  document.addEventListener('resize', recalculateVideoArea)
   // window.addEventListener('resize', onResize)
 })
 
 const handleDragging = (e: MouseEvent) => {
   const percentage = (e.pageX / window.innerWidth) * 100
 
-  if (percentage >= 10 && percentage <= 90) {
+  if (percentage >= 20 && percentage <= 80) {
     dividerPosition.value = percentage.toFixed(2)
   }
-  if (videos.value && videosWrap?.value) {
-    const videoAreaWidth = videosWrap.value.getBoundingClientRect().width * (e.pageX / window.innerWidth)
-
-    // debounce(function () { videos.value?.recalculateLayout(videoAreaWidth) }, 50)
-    videos.value?.recalculateLayout(videoAreaWidth)
-  }
+  recalculateVideoArea()
 }
 const startDragging = () => {
   document.addEventListener('mousemove', handleDragging)
@@ -85,8 +84,17 @@ const endDragging = () => {
   document.removeEventListener('mousemove', handleDragging)
 }
 
+const recalculateVideoArea = () => {
+  if (videos.value && videosWrap?.value) {
+
+    const videoAreaWidth = videosWrap.value.getBoundingClientRect().width * (+dividerPosition.value / 100)
+    videos.value?.recalculateLayout(videoAreaWidth)
+  }
+}
+
 onBeforeUnmount(() => {
   document.removeEventListener('mousemove', handleDragging)
+  document.removeEventListener('resize', recalculateVideoArea)
 })
 </script>
 
