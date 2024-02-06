@@ -37,31 +37,44 @@ const videosWrap = ref<HTMLCanvasElement | null>(null)
 const dividerPosition = ref<string | number>(50)
 const userList = ref([{
   userName: '백미',
-  src: 'https://dosant.github.io/video.mp4'
+  src: 'https://dosant.github.io/video.mp4',
+  poster: '',
+  muted: false
 }, {
   userName: '밥풀',
-  src: '../assets/images/avatar_1.png'
+  poster: '../assets/images/avatar_1.png',
+  src: '',
+  muted: true,
+  isVideo: false
 }, {
   userName: '까미',
-  src: ''
+  src: '',
+  muted: false
 }, {
   userName: '서리태',
-  src: ''
+  src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+  muted: false
 }, {
   userName: '흑미',
-  src: 'https://dosant.github.io/video.mp4'
+  src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+  muted: false
 }, {
   userName: '',
-  src: ''
+  src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+  muted: true
 }, {
   userName: '보리',
-  src: ''
+  poster: '../assets/images/avatar_2.png',
+  muted: true,
+  isVideo: false
 }, {
   userName: '콩이',
-  src: ''
+  src: '',
+  muted: false
 }, {
   userName: '찹쌀이',
-  src: ''
+  src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+  muted: true
 }])
 
 onMounted(() => {

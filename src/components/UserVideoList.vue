@@ -12,7 +12,10 @@
       :key="idx">
       <VideoChatPanel
         :user-name="video.userName"
-        :src="video.src" />
+        :src="video.src"
+        :poster="video.poster"
+        :muted="video.muted"
+        :is-video="video.isVideo" />
     </li>
   </ul> 
 </template>
@@ -89,12 +92,12 @@ const recalculateLayout = (screenWidth: number) => {
     if (!gallery) return
     const aspectRatio = 16 / 9
     const screenHeight = gallery.getBoundingClientRect().height
-    
+
     const screenWidthExceptPadding = screenWidth - 40
     const screenHeightExceptPadding = screenHeight - 80 
 
     const videoCount = props.userList.length
-  
+
     const { width, height, cols } = calculateLayout(
       screenWidthExceptPadding,
       screenHeightExceptPadding,
@@ -105,7 +108,7 @@ const recalculateLayout = (screenWidth: number) => {
     // if (videoListRef.value) videoListRef.value.style.maxWidth = (width * cols + 60) + 'px'
     videoItemWidth.value = width
     videoItemHeight.value = height
-  
+
     // videoListRef.value.style.setProperty('--width', width + 'px')
     // videoListRef.value.style.setProperty('--height', height + 'px')
     // videoListRef.value.style.setProperty('--cols', cols + '')
