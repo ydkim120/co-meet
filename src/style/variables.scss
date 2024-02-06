@@ -3,12 +3,16 @@ $purple: #7972BF;
 $gray-purple: #B8ABCA;
 $black: #020202;
 $light-gray: #ddd;
+$gray: #aaa;
 $dark-gray: #4C4D4A;
 $white: #fff;
 $black: #303133;
 
 // gap
+$gap-xs: 5px;
+$gap-s: 10px;
 $gap: 20px;
+$gap-m: 30px;
 
 // z-index
 $header-z-index: 10;
@@ -22,5 +26,17 @@ $radius-xs: 4px;
 
 $primary: $purple;
 
-$background-color: $beige;
-$text-color: $black;
+// 여기서부터 색 테마 설정
+html[data-theme="light"] {
+  --background-color: #{$beige};
+  --text-color: #{$black};
+  --text-color-white: #{$white};
+  --section-divider-color: #{$gray};
+}
+
+html[data-theme="dark"] {
+  --background-color: #{$black};
+  --text-color: #{$white};
+  --text-color-white: #{$light-gray};
+  --section-divider-color: #4C4D4F;
+}

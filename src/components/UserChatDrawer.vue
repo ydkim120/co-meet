@@ -41,6 +41,10 @@ const chatList = ref([{
   userName: '백미',
   contents: '고양이는 야옹',
   createdAt: new Date()
+}, {
+  userName: '서리태',
+  contents: '강아지는 멍멍',
+  createdAt: new Date()
 }])
 
 const enterNewMsg = async (msg = newMsg.value) => {
@@ -65,8 +69,6 @@ const scrollToBottom = (element: HTMLElement | null) => {
 <style lang="scss" scoped>
 .user-chat-drawer {
   position: relative;
-  // width: 100%;
-  
   .user-chat {
     &__list {
       overflow-y: auto;
@@ -89,7 +91,7 @@ const scrollToBottom = (element: HTMLElement | null) => {
     right: 0;
     bottom: 0;
     padding: $gap;
-    background-color: $background-color;
+    background-color: var(--background-color);
     .new-chat__input { width: 100%; }
   }
 }

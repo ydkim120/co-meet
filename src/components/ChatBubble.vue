@@ -67,7 +67,7 @@ const dateSimple = (date: string) => {
     gap: 10px;
     background-color: $primary;
     border-radius: 15px;
-    color: $white;
+    color: var(--text-color-white);
 
     &::before,
     &::after {
@@ -84,7 +84,7 @@ const dateSimple = (date: string) => {
     }
 
     &::after {
-      background-color: $background-color;
+      background-color: var(--background-color);
       border-top-right-radius: 50%;
       left: 20px;
       transform: translate(-30px, 0px);
@@ -96,6 +96,7 @@ const dateSimple = (date: string) => {
     display: flex;
     align-items: flex-end;
     min-width: 50px;
+    color: var(--text-color);
   }
 }
 </style>

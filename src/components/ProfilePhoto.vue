@@ -1,7 +1,7 @@
 <template>
   <div class="profile-photo">
-    <div 
-      class="user-profile-photo" 
+    <div
+      class="user-profile-photo"
       :style="{ width: props.size, height: props.size }">
       <img
         v-if="props.src && isImageLoadSuccess" 
@@ -25,8 +25,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { User } from '@element-plus/icons-vue'
-
 
 export interface Props {
   src?: string | undefined,
@@ -51,7 +49,7 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid $light-gray;
+  border: 1px solid $gray-purple;
   cursor: pointer;
   &.-center { margin: 0 auto;}
   img { object-fit: cover; }
@@ -60,8 +58,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $light-gray;
-  background-color: $white;
-
+  color: $gray-purple;
+  background-color: var(--text-color-white);
 }
 </style>

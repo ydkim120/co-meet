@@ -115,14 +115,16 @@ onBeforeUnmount(() => {
 
 .section-divider {
   display: block;
-  height: 100vh;
-  width: 6px;
-  background: red;
+  height: calc(100vh - 20px);
+  width: 2px;
+  background: var(--section-divider-color);
   transform: translateX(-3px);
   position: absolute;
   top: 0;
   z-index: 1;
   cursor: ew-resize;
+  &:hover { background: $primary; }
+  &:active { background: $primary; }
 }
 
 .user-videos {

@@ -1,0 +1,30 @@
+$purple: #7972BF;
+
+$primary: $purple;
+
+$--colors: (
+  'primary': (
+    'base': $primary,
+  ),
+  'success': (
+    'base': #13ce66,
+  ),
+  'warning': (
+    'base': #ffba00,
+  ),
+  'danger': (
+    'base': #ff4949,
+  ),
+  'error': (
+    'base': #db2828,
+  ),
+  'info': (
+    'base': #42b8dd,
+  ),
+);
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with ( // do not use same name, it will override.
+  $colors: $--colors);
+
+// custom dark variables
+@use "./dark.scss";

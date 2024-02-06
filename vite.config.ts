@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'url'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import ElementPlus from 'unplugin-element-plus/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,8 +15,13 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({
+        importStyle: 'sass',
+      })],
     }),
+    // ElementPlus({
+    //   useSource: true,
+    // }),
   ],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
@@ -28,7 +34,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "@/style/style.scss";',
+        additionalData: `
+          @use "@/style/element-plus/index.scss" as el;
+          @use "@/style/variables.scss" as *;
+          @use "@/style/style.scss" as *;
+        `,
       }
     }
   },
